@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Glob demo</title>
+  <script src="https://linkeddata.github.io/rdflib.js/dist/rdflib.min.js"></script>
+  <script src="ldp-glob.js">client-side globbing</script>
+  <script>
+    window.onload = async () => {
+      const triples = await ldpGlob(location.search.substr(1));
+      document.getElementById('results').innerText = JSON.stringify(
+        triples.match().map(t => [t.subject.value, t.predicate.value, t.object.value]), null, '  ');
+    };
+  </script>
+</head>
+<body>
+  <pre id="results"></pre>
+</body>
+</html>
